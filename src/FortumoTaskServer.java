@@ -5,7 +5,7 @@ public class FortumoTaskServer {
 
 
     private final static int port = 8082;
-    static final String WEB_ROOT = "C:\\Users\\Geitrud\\ExampleServer\\src";
+    static final String WEB_ROOT = "";
 
 
     public static void main(String[] args) {

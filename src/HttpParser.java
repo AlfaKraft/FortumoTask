@@ -7,7 +7,7 @@ public class HttpParser {
     private static final int SP = 0x20; //32
     private static final int CR = 0x0D; //13
     private static final int LF = 0x0A; //10
-    private static final int COMMA = 0x27; // '
+    private static final int QUOTE = 0x27; // '
 
 
 
@@ -37,15 +37,14 @@ public class HttpParser {
     }
 
     private void parseMessageBody(InputStreamReader inputStreamReader, RequestHttp requestHttp) throws IOException {
-        StringBuilder stringBuilder = new StringBuilder();
         MessageHttp messageHttp = new MessageHttp();
         int _byte;
         _byte = inputStreamReader.read();
-        if (_byte == COMMA){
+        if (_byte == QUOTE){
             StringBuilder message = new StringBuilder();
             while (true){
                 _byte = inputStreamReader.read();
-                if (_byte == COMMA){
+                if (_byte == QUOTE){
                     break;
                 }
                 else {
@@ -55,6 +54,16 @@ public class HttpParser {
             messageHttp.setMessage(message.toString());
             requestHttp.setMessage(messageHttp);
 
+        }
+        else {
+            StringBuilder message = new StringBuilder();
+            message.append((char) _byte);
+            while (inputStreamReader.ready()){
+                _byte = inputStreamReader.read();
+                message.append((char) _byte);
+            }
+            messageHttp.setMessage(message.toString());
+            requestHttp.setMessage(messageHttp);
         }
 
 
@@ -71,7 +80,7 @@ public class HttpParser {
             if(_byte == CR){
                 _byte = inputStreamReader.read();
                 if (_byte == LF){
-                    System.out.println("This is Header: " +  stringBuilder.toString());
+                    System.out.println(stringBuilder.toString());
                     _byte = inputStreamReader.read();
                     if (_byte == CR){
                         _byte = inputStreamReader.read();
