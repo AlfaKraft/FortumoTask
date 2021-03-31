@@ -53,6 +53,7 @@ public class HttpConnectionWorker extends Thread {
             String response = "HTTP/1.1 200 OK" + CRLF + "Content-Length: " + result.getBytes().length + CRLF + CRLF +
                     result+ CRLF + CRLF;
             outputStream.write(response.getBytes());
+            calculatedValue.set(0);
 
 
 
