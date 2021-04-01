@@ -9,7 +9,7 @@ public class HttpParser {
     private static final int SP = 0x20; //32
     private static final int CR = 0x0D; //13
     private static final int LF = 0x0A; //10
-    private static final int QUOTE = 0x27; // '
+    // '
 
 
 
@@ -41,32 +41,14 @@ public class HttpParser {
     private void parseMessageBody(InputStreamReader inputStreamReader, RequestHttp requestHttp) throws IOException {
         MessageHttp messageHttp = new MessageHttp();
         int _byte;
-        _byte = inputStreamReader.read();
-        if (_byte == QUOTE){
-            StringBuilder message = new StringBuilder();
-            while (true){
-                _byte = inputStreamReader.read();
-                if (_byte == QUOTE){
-                    break;
-                }
-                else {
-                    message.append((char) _byte);
-                }
-            }
-            messageHttp.setMessage(message.toString());
-            requestHttp.setMessage(messageHttp);
-
-        }
-        else {
-            StringBuilder message = new StringBuilder();
+        StringBuilder message = new StringBuilder();
+        while (inputStreamReader.ready()){
+            _byte = inputStreamReader.read();
             message.append((char) _byte);
-            while (inputStreamReader.ready()){
-                _byte = inputStreamReader.read();
-                message.append((char) _byte);
-            }
-            messageHttp.setMessage(message.toString());
-            requestHttp.setMessage(messageHttp);
         }
+        messageHttp.setMessage(message.toString());
+        requestHttp.setMessage(messageHttp);
+
 
 
 
