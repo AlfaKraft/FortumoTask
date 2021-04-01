@@ -1,3 +1,5 @@
+package com.FortumoTask.httpModels;
+
 public enum HttpStatusError {
 
     CLIENT_ERROR_400_BAD_REQUEST(400, "Bad Request"),

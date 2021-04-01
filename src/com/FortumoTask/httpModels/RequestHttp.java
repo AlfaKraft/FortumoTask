@@ -1,8 +1,8 @@
+package com.FortumoTask.httpModels;
+
 public class RequestHttp {
     private HttpMethod method;
-    private String requestTarget;
-    private String httpVersion;
-    private String header;
+    private Http_Headers headers;
     private MessageHttp message;
 
 
@@ -11,13 +11,6 @@ public class RequestHttp {
         this.message = message;
     }
 
-    public void setRequestTarget(String requestTarget) {
-        this.requestTarget = requestTarget;
-    }
-
-    public void setHttpVersion(String httpVersion) {
-        this.httpVersion = httpVersion;
-    }
 
     public RequestHttp() {
     }
@@ -40,5 +33,14 @@ public class RequestHttp {
 
     public MessageHttp getHttpMessage() {
         return message;
+    }
+
+
+    public Http_Headers getHeaders() {
+        return headers;
+    }
+
+    public void setHeaders(Http_Headers headers) {
+        this.headers = headers;
     }
 }

@@ -1,3 +1,5 @@
+package com.FortumoTask.httpModels;
+
 public class MessageHttp {
 
     String message;

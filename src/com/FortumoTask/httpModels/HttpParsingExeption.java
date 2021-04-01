@@ -1,3 +1,5 @@
+package com.FortumoTask.httpModels;
+
 public class HttpParsingExeption extends Exception {
 
     private final HttpStatusError errorCode;

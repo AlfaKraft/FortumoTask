@@ -1,3 +1,5 @@
+package com.FortumoTask.httpModels;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -11,7 +13,7 @@ public class HttpParser {
 
 
 
-    public RequestHttp parseHttpRequest(InputStream inputStream){
+    public RequestHttp parseHttpRequest(InputStream inputStream) throws HttpParsingExeption{
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
         RequestHttp request = new RequestHttp();
 
@@ -21,7 +23,7 @@ public class HttpParser {
             e.printStackTrace();
         }
         try {
-            parseHeaders(inputStreamReader);
+            parseHeaders(inputStreamReader, request);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -70,21 +72,22 @@ public class HttpParser {
 
     }
 
-    private void parseHeaders(InputStreamReader inputStreamReader) throws IOException {
+    private void parseHeaders(InputStreamReader inputStreamReader, RequestHttp request) throws IOException {
+        Http_Headers headers = new Http_Headers();
 
         StringBuilder stringBuilder = new StringBuilder();
-        boolean HeaderParsed = false;
 
         int _byte;
         while ((_byte = inputStreamReader.read()) >= 0) {
             if(_byte == CR){
                 _byte = inputStreamReader.read();
                 if (_byte == LF){
-                    System.out.println(stringBuilder.toString());
+                    headers.addTo(stringBuilder.toString());
                     _byte = inputStreamReader.read();
                     if (_byte == CR){
                         _byte = inputStreamReader.read();
                         if(_byte == LF){
+                            request.setHeaders(headers);
                             return;
                         }
                     }

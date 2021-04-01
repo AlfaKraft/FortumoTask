@@ -1,3 +1,9 @@
+package com.FortumoTask.server;
+
+import com.FortumoTask.httpModels.HttpParser;
+import com.FortumoTask.httpModels.HttpParsingExeption;
+import com.FortumoTask.httpModels.RequestHttp;
+
 import javax.management.StringValueExp;
 import java.io.*;
 import java.net.Socket;
@@ -57,7 +63,7 @@ public class HttpConnectionWorker extends Thread {
 
 
 
-        } catch (IOException | InterruptedException e){
+        } catch (IOException | InterruptedException | HttpParsingExeption e){
             e.printStackTrace();
         } finally {
             if (inputStream != null) {

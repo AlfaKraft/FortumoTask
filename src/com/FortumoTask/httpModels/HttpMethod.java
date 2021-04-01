@@ -1,3 +1,5 @@
+package com.FortumoTask.httpModels;
+
 public enum HttpMethod {
     POST;
     public static final int MAX_LENGTH;

@@ -1,8 +1,10 @@
+package com.FortumoTask.server;
+
+import com.FortumoTask.server.HttpConnectionWorker;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
